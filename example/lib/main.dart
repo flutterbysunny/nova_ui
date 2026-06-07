@@ -50,7 +50,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // ✅ Step 4 ka fayda — context se colors lo, hardcode mat karo
     final primary = NovaColors.indigo;
     final isLight = !context.isDark;
 
@@ -75,7 +74,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         child: SafeArea(
           child: SingleChildScrollView(
-            // ✅ NovaSpacing token
             padding: NovaSpacing.paddingPage.copyWith(top: NovaSpacing.xxxl),
             child: Form(
               key: _formKey,
@@ -86,7 +84,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   NovaContainer(
                     width: 52,
                     height: 52,
-                    // ✅ NovaRadius token
                     borderRadius: NovaRadius.lg,
                     gradient: LinearGradient(
                       colors: [primary[500]!, primary[400]!],
@@ -100,15 +97,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
-                  // ✅ NovaSpacing gap widget
                   NovaSpacing.gapXl,
 
                   // Tag
                   NovaContainer(
                     padding: NovaSpacing.paddingHV(10, 4),
-                    // ✅ NovaRadius token
                     borderRadius: NovaRadius.sm,
-                    // ✅ withValues — no deprecation warning
                     color: primary[500]!.withValues(alpha: 0.15),
                     child: Text(
                       'NOVA UI',
@@ -126,7 +120,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     'Welcome back',
                     style: TextStyle(
-                      // ✅ Theme-aware text color
                       color: context.novaTextPrimary,
                       fontSize: 28,
                       fontWeight: FontWeight.w700,
@@ -139,7 +132,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     'Sign in to continue',
                     style: TextStyle(
-                      // ✅ Theme-aware muted color
                       color: context.novaTextSecondary,
                       fontSize: 15,
                     ),
@@ -184,7 +176,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {},
                       child: Text(
                         'Forgot password?',
-                        // ✅ Theme primary color
                         style: TextStyle(color: context.novaPrimary),
                       ),
                     ),
@@ -195,7 +186,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: 'Login',
                     loading: _loading,
                     onPressed: _onLogin,
-                    // ✅ NovaColors swatch
                     backgroundColor: primary[500],
                   ),
 
@@ -212,7 +202,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           'or continue with',
                           style: TextStyle(
-                            // ✅ withValues instead of withOpacity
                             color: context.novaTextSecondary
                                 .withValues(alpha: 0.5),
                             fontSize: 13,
@@ -245,9 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Text(
                           "Don't have an account? ",
-                          style: TextStyle(
-                            color: context.novaTextSecondary,
-                          ),
+                          style: TextStyle(color: context.novaTextSecondary),
                         ),
                         GestureDetector(
                           onTap: () {},
@@ -262,6 +249,310 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
+
+                  NovaSpacing.gapXl,
+
+                  // ── Widget Showcase ───────────────────────────────
+
+                  Divider(
+                    color: context.novaTextSecondary.withValues(alpha: 0.15),
+                  ),
+
+                  NovaSpacing.gapMd,
+
+                  Text(
+                    'Widget Showcase',
+                    style: TextStyle(
+                      color: context.novaTextSecondary,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1,
+                    ),
+                  ),
+
+                  NovaSpacing.gapMd,
+
+                  // ── NovaLoader ────────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaLoader',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            // Circular
+                            Column(
+                              children: [
+                                NovaLoader(color: primary[500]),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  'circular',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // Dots
+                            Column(
+                              children: [
+                                NovaLoader(
+                                  type: NovaLoaderType.dots,
+                                  color: primary[500],
+                                  size: 28,
+                                ),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  'dots',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // Linear
+                            Column(
+                              children: [
+                                NovaLoader(
+                                  type: NovaLoaderType.linear,
+                                  color: primary[500],
+                                  width: 80,
+                                ),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  'linear',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  NovaSpacing.gapMd,
+
+                  // ── NovaDialog ────────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaDialog',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+                        Row(
+                          children: [
+                            Expanded(
+                              child: NovaButton(
+                                text: 'Success',
+                                height: 40,
+                                backgroundColor: const Color(0xFF22C55E),
+                                onPressed: () => NovaDialog.show(
+                                  context: context,
+                                  title: 'Profile Saved',
+                                  message:
+                                  'Your changes have been saved successfully.',
+                                  type: NovaDialogType.success,
+                                ),
+                              ),
+                            ),
+                            NovaSpacing.gapSmH,
+                            Expanded(
+                              child: NovaButton(
+                                text: 'Warning',
+                                height: 40,
+                                backgroundColor: const Color(0xFFF59E0B),
+                                onPressed: () => NovaDialog.show(
+                                  context: context,
+                                  title: 'Log Out?',
+                                  message:
+                                  'This will log you out of all devices.',
+                                  type: NovaDialogType.warning,
+                                  confirmText: 'Logout',
+                                  cancelText: 'Cancel',
+                                ),
+                              ),
+                            ),
+                            NovaSpacing.gapSmH,
+                            Expanded(
+                              child: NovaButton(
+                                text: 'Danger',
+                                height: 40,
+                                backgroundColor:
+                                Theme.of(context).colorScheme.error,
+                                onPressed: () => NovaDialog.show(
+                                  context: context,
+                                  title: 'Delete Account?',
+                                  message:
+                                  'This action cannot be undone.',
+                                  type: NovaDialogType.danger,
+                                  confirmText: 'Delete',
+                                  cancelText: 'Cancel',
+                                  barrierDismissible: false,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  NovaSpacing.gapMd,
+
+                  // ── NovaBadge ─────────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaBadge',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // Status labels
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            NovaBadge(
+                              label: 'Active',
+                              color: NovaBadgeColor.success,
+                            ),
+                            NovaBadge(
+                              label: 'Pending',
+                              color: NovaBadgeColor.warning,
+                              variant: NovaBadgeVariant.soft,
+                            ),
+                            NovaBadge(
+                              label: 'Failed',
+                              color: NovaBadgeColor.danger,
+                              variant: NovaBadgeVariant.outlined,
+                            ),
+                            NovaBadge(
+                              label: 'Draft',
+                              color: NovaBadgeColor.neutral,
+                              variant: NovaBadgeVariant.soft,
+                            ),
+                            NovaBadge(
+                              label: 'New',
+                              color: NovaBadgeColor.primary,
+                            ),
+                          ],
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Dot + Count + Overlay
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            // Dot
+                            Column(
+                              children: [
+                                NovaBadge(
+                                  isDot: true,
+                                  color: NovaBadgeColor.success,
+                                ),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  'dot',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // Count
+                            Column(
+                              children: [
+                                NovaBadge(
+                                  count: 5,
+                                  color: NovaBadgeColor.danger,
+                                ),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  'count',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // Overlay on icon
+                            Column(
+                              children: [
+                                NovaBadge(
+                                  count: 12,
+                                  color: NovaBadgeColor.danger,
+                                  child: Icon(
+                                    Icons.notifications_outlined,
+                                    size: 28,
+                                    color: context.novaTextPrimary,
+                                  ),
+                                ),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  'overlay',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // 99+ overflow
+                            Column(
+                              children: [
+                                NovaBadge(
+                                  count: 150,
+                                  color: NovaBadgeColor.primary,
+                                ),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  '99+',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  NovaSpacing.gapXl,
                 ],
               ),
             ),
