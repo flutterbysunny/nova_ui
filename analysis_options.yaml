@@ -7,6 +7,5 @@ linter:
     - prefer_const_declarations
     - prefer_final_fields
     - public_member_api_docs
-    - sort_pub_dependencies
     - unawaited_futures
     - unnecessary_lambdas

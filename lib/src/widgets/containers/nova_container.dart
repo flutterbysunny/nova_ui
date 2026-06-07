@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 class NovaContainer extends StatelessWidget {
+  /// Creates a [NovaContainer] widget.
+
   const NovaContainer({
     super.key,
     required this.child,
@@ -36,16 +38,23 @@ class NovaContainer extends StatelessWidget {
   color == null || gradient == null,
   'Cannot use both color and gradient at the same time.',
   );
+  /// The widget below this widget in the tree.
 
   final Widget child;
+  /// Inner spacing inside the container.
 
   final EdgeInsetsGeometry? padding;
+  /// Outer spacing around the container.
+
   final EdgeInsetsGeometry? margin;
 
   /// Background color. Cannot be used together with [gradient].
   final Color? color;
+  /// Border radius of the container.
 
   final BorderRadius? borderRadius;
+  /// Border decoration of the container.
+
   final Border? border;
 
   /// Background gradient. Cannot be used together with [color].
@@ -60,14 +69,19 @@ class NovaContainer extends StatelessWidget {
 
   /// Makes the container tappable with an ink ripple effect.
   final VoidCallback? onTap;
+  /// Makes the container tappable with an ink ripple.
 
   final VoidCallback? onLongPress;
+  /// Width of the container.
 
   final double? width;
+  /// Height of the container.
+
   final double? height;
 
   /// How to clip content. Defaults to [Clip.antiAlias].
   final Clip clipBehavior;
+  /// Alignment of the child within the container.
 
   final AlignmentGeometry? alignment;
 

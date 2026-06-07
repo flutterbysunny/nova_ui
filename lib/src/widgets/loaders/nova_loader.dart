@@ -32,6 +32,8 @@ enum NovaLoaderType {
 /// NovaLoader(color: Colors.white, size: 32)
 /// ```
 class NovaLoader extends StatefulWidget {
+  /// Creates a [NovaLoader] widget.
+
   const NovaLoader({
     super.key,
     this.type = NovaLoaderType.circular,
@@ -63,7 +65,7 @@ class NovaLoader extends StatefulWidget {
 class _NovaLoaderState extends State<NovaLoader>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
+  late Animation<double> animation;
 
   @override
   void initState() {
@@ -73,7 +75,7 @@ class _NovaLoaderState extends State<NovaLoader>
       duration: const Duration(milliseconds: 600),
     )..repeat(reverse: true);
 
-    _animation = Tween<double>(begin: 0.3, end: 1.0).animate(
+    animation = Tween<double>(begin: 0.3, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
   }

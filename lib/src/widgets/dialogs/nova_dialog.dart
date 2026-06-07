@@ -43,6 +43,8 @@ enum NovaDialogType {
 /// );
 /// ```
 class NovaDialog extends StatelessWidget {
+  /// Creates a [NovaDialog] widget.
+
   const NovaDialog({
     super.key,
     required this.title,

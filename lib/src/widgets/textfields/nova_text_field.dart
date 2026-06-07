@@ -16,6 +16,8 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 class NovaTextField extends StatefulWidget {
+  /// Creates a [NovaTextField] widget.
+
   const NovaTextField({
     super.key,
     this.controller,
@@ -54,6 +56,7 @@ class NovaTextField extends StatefulWidget {
 
   /// If true, input is hidden (for passwords). Adds a visibility toggle.
   final bool obscureText;
+  /// Keyboard type for the input. Defaults to [TextInputType.text].
 
   final TextInputType keyboardType;
 
@@ -68,6 +71,7 @@ class NovaTextField extends StatefulWidget {
 
   /// Called when the user submits via the keyboard action button.
   final void Function(String)? onFieldSubmitted;
+  /// Optional focus node to control focus programmatically.
 
   final FocusNode? focusNode;
 
@@ -76,6 +80,7 @@ class NovaTextField extends StatefulWidget {
 
   /// When false, field is non-interactive and visually dimmed.
   final bool enabled;
+  /// Whether the field automatically gets focus. Default false.
 
   final bool autofocus;
 

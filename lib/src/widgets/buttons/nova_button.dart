@@ -31,6 +31,7 @@ enum NovaButtonVariant {
 /// )
 /// ```
 class NovaButton extends StatelessWidget {
+  /// Creates a [NovaButton] widget.
   const NovaButton({
     super.key,
     required this.text,
@@ -60,8 +61,9 @@ class NovaButton extends StatelessWidget {
 
   /// Optional icon shown before the text.
   final Widget? icon;
-
+  /// The button's height. Defaults to 52.
   final double height;
+  /// The button's width. Defaults to full width.
   final double width;
 
   /// Override background color. Defaults to theme primary color.
@@ -69,8 +71,11 @@ class NovaButton extends StatelessWidget {
 
   /// Override text/icon color. Defaults to white for filled, primary for others.
   final Color? foregroundColor;
+  /// Border radius of the button. Defaults to 12px.
 
   final BorderRadius borderRadius;
+  /// Padding inside the button.
+
   final EdgeInsetsGeometry? padding;
 
   @override

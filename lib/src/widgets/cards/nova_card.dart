@@ -22,6 +22,8 @@ import '../../../nova_ui.dart';
 /// )
 /// ```
 class NovaCard extends StatelessWidget {
+  /// Creates a [NovaCard] widget.
+
   const NovaCard({
     super.key,
     required this.child,
@@ -35,22 +37,34 @@ class NovaCard extends StatelessWidget {
     this.width,
     this.height,
   });
+  /// Background color. Defaults to theme surface.
 
   final Widget child;
+  /// Inner spacing. Defaults to 16px all sides.
+
   final EdgeInsetsGeometry padding;
+  /// Outer spacing around the card.
+
   final EdgeInsetsGeometry? margin;
 
   /// Shadow depth. Defaults to 3.
   final double elevation;
+  /// Border radius. Defaults to 16px.
 
   final BorderRadius? borderRadius;
 
   /// Override card background. Defaults to theme surface color.
   final Color? color;
+  /// Called when the card is tapped.
 
   final VoidCallback? onTap;
+  /// Called when the card is tapped.
   final VoidCallback? onLongPress;
+  /// Width of the card.
+
   final double? width;
+  /// Height of the card.
+
   final double? height;
 
   @override

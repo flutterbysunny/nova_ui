@@ -31,7 +31,6 @@ enum NovaBadgeColor {
 }
 
 /// A flexible badge widget for Nova UI.
-///
 /// Use for notification counts, status labels, tags, and dot indicators.
 /// Supports filled, outlined, and soft variants with semantic colors.
 ///
@@ -53,6 +52,8 @@ enum NovaBadgeColor {
 /// )
 /// ```
 class NovaBadge extends StatelessWidget {
+  /// Creates a [NovaBadge] widget.
+
   const NovaBadge({
     super.key,
     this.label,
