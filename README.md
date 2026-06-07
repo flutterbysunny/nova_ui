@@ -1,47 +1,98 @@
 # Nova UI
 
-A modern Flutter UI framework with reusable widgets and clean APIs.
+[![pub package](https://img.shields.io/pub/v/nova_ui.svg)](https://pub.dev/packages/nova_ui)
+[![pub points](https://img.shields.io/pub/points/nova_ui)](https://pub.dev/packages/nova_ui/score)
+[![likes](https://img.shields.io/pub/likes/nova_ui)](https://pub.dev/packages/nova_ui)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Nova UI helps developers build beautiful Flutter applications faster with production-ready UI components.
+A modern Flutter UI framework with reusable widgets, design system components, and beautiful developer-friendly APIs.
+
+---
 
 ## Features
 
-* NovaButton
-* NovaTextField
-* NovaContainer
-* Design System Constants
-* Clean APIs
-* Lightweight
-* Null Safety Support
+- **NovaButton** — filled, outlined, text variants · loading state · icon support · disabled state
+- **NovaTextField** — label · validation · password toggle · multiline · theme-aware borders
+- **NovaContainer** — tappable · elevation shorthand · gradient · clip support
+- **NovaCard** — zero-config card with shadow and rounded corners
+- **NovaTheme** — one-line light/dark theme setup
+- **NovaColors** — semantic theme-aware colors + raw swatches
+- **NovaSpacing** — spacing scale + gap widgets + EdgeInsets helpers
+- **NovaRadius** — border radius tokens + directional helpers
+- Null safety · Material 3 · Dark mode · All platforms
+
+---
 
 ## Installation
 
-Add Nova UI to your pubspec.yaml:
-
 ```yaml
 dependencies:
-  nova_ui: ^1.0.0
+  nova_ui: ^1.0.1
 ```
-
-Run:
 
 ```bash
 flutter pub get
 ```
 
-## Usage
+---
 
-Import package:
+## Quick Start
 
 ```dart
 import 'package:nova_ui/nova_ui.dart';
+
+// 1. Setup theme
+MaterialApp(
+  theme: NovaTheme.light(),
+  darkTheme: NovaTheme.dark(),
+  themeMode: ThemeMode.system,
+)
+
+// 2. Use widgets
+NovaButton(
+  text: 'Login',
+  onPressed: () {},
+)
+
+NovaTextField(
+  label: 'Email',
+  hintText: 'you@example.com',
+  validator: (v) => v!.isEmpty ? 'Required' : null,
+)
+
+NovaCard(
+  onTap: () {},
+  child: Text('Hello Nova UI'),
+)
 ```
+
+---
+
+## Widgets
 
 ### NovaButton
 
 ```dart
+// Filled (default)
+NovaButton(text: 'Submit', onPressed: () {})
+
+// Outlined
 NovaButton(
-  text: 'Login',
+  text: 'Cancel',
+  variant: NovaButtonVariant.outlined,
+  onPressed: () {},
+)
+
+// Loading
+NovaButton(text: 'Saving...', loading: true, onPressed: () {})
+
+// Disabled
+NovaButton(text: 'Unavailable', onPressed: null)
+
+// With icon
+NovaButton(
+  text: 'Upload',
+  icon: Icon(Icons.upload),
   onPressed: () {},
 )
 ```
@@ -49,52 +100,146 @@ NovaButton(
 ### NovaTextField
 
 ```dart
+// Basic
+NovaTextField(label: 'Name', hintText: 'Enter your name')
+
+// Password — auto visibility toggle
 NovaTextField(
-  hintText: 'Email',
+  label: 'Password',
+  obscureText: true,
 )
+
+// With validation (inside Form widget)
+NovaTextField(
+  label: 'Email',
+  validator: (v) => v!.contains('@') ? null : 'Invalid email',
+)
+
+// Multiline
+NovaTextField(label: 'Bio', maxLines: 4)
 ```
 
 ### NovaContainer
 
 ```dart
+// Tappable
 NovaContainer(
-  padding: EdgeInsets.all(16),
-  child: Text('Nova UI'),
+  onTap: () {},
+  elevation: 4,
+  borderRadius: NovaRadius.lg,
+  child: Text('Tap me'),
+)
+
+// Gradient
+NovaContainer(
+  height: 120,
+  borderRadius: NovaRadius.xl,
+  gradient: LinearGradient(colors: [Colors.purple, Colors.blue]),
+  child: Center(child: Text('Gradient')),
 )
 ```
 
-## Included Widgets
+### NovaCard
 
-### Components
+```dart
+// Zero config
+NovaCard(child: Text('Simple card'))
 
-* NovaButton
-* NovaTextField
-* NovaContainer
+// Tappable
+NovaCard(
+  onTap: () {},
+  child: ListTile(title: Text('Tap to open')),
+)
+```
 
-### Design System
+---
 
-* NovaColors
-* NovaRadius
-* NovaSpacing
+## Design System
+
+### NovaTheme
+
+```dart
+MaterialApp(
+  theme: NovaTheme.light(),
+  darkTheme: NovaTheme.dark(),
+  themeMode: ThemeMode.system,
+)
+
+// Custom brand color
+MaterialApp(
+  theme: NovaTheme.light(seedColor: Colors.teal),
+  darkTheme: NovaTheme.dark(seedColor: Colors.teal),
+)
+```
+
+### NovaColors
+
+```dart
+// Semantic — theme-aware (dark mode automatic)
+color: NovaColors.primary(context)
+color: NovaColors.surface(context)
+color: NovaColors.textSecondary(context)
+color: NovaColors.success(context)
+
+// Raw swatches
+color: NovaColors.indigo[500]
+color: NovaColors.slate[200]
+```
+
+### NovaSpacing
+
+```dart
+// Raw values
+SizedBox(height: NovaSpacing.md)   // 16px
+SizedBox(width: NovaSpacing.sm)    // 8px
+
+// Gap widgets (vertical)
+NovaSpacing.gapSm    // 8px
+NovaSpacing.gapMd    // 16px
+NovaSpacing.gapLg    // 24px
+
+// EdgeInsets helpers
+padding: NovaSpacing.paddingMd       // all sides 16px
+padding: NovaSpacing.paddingPage     // h:24 v:16
+padding: NovaSpacing.paddingH(20)    // horizontal only
+```
+
+### NovaRadius
+
+```dart
+borderRadius: NovaRadius.sm     // 8px
+borderRadius: NovaRadius.md     // 12px
+borderRadius: NovaRadius.lg     // 16px
+borderRadius: NovaRadius.full   // pill shape
+```
+
+### BuildContext extensions
+
+```dart
+context.isDark              // bool
+context.novaPrimary         // Color
+context.novaSurface         // Color
+context.novaTextPrimary     // Color
+context.novaTextSecondary   // Color
+context.novaScheme          // ColorScheme
+```
+
+---
 
 ## Roadmap
 
-### Version 1.1.0
+| Version | Widgets |
+|---------|---------|
+| 1.0.2   | `NovaLoader`, `NovaDialog` |
+| 1.0.3   | `NovaToast`, `NovaBottomSheet` |
+| 1.0.4   | `NovaShimmer`, `NovaAvatar` |
 
-* NovaCard
-* NovaLoader
-* NovaDialog
-
-### Version 1.2.0
-
-* NovaToast
-* NovaBottomSheet
-* NovaShimmer
+---
 
 ## Contributing
 
-Contributions are welcome.
+Contributions are welcome! Please open an issue first to discuss changes.
 
 ## License
 
-MIT License
+[MIT](LICENSE) © 2026 flutterbysunny
