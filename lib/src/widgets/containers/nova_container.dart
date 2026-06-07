@@ -74,7 +74,7 @@ class NovaContainer extends StatelessWidget {
   List<BoxShadow> _buildShadow(double elev) {
     return [
       BoxShadow(
-        color: Colors.black.withOpacity(0.08 + elev * 0.01),
+        color: Colors.black.withValues(alpha:0.08 + elev * 0.01),
         blurRadius: elev * 2,
         offset: Offset(0, elev * 0.5),
         spreadRadius: elev * 0.1,

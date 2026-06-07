@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.2
+
+### New Widgets
+- `NovaLoader` — circular, linear, dots variants with theme-aware colors
+- `NovaDialog` — info/success/warning/danger alert and confirm dialogs with static `show()` helper
+- `NovaBadge` — status labels, notification counts, dot indicators, overlay badges with filled/outlined/soft variants
+
 
 ## 1.0.1
 

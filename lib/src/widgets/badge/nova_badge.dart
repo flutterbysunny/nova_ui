@@ -37,17 +37,17 @@ enum NovaBadgeColor {
 ///
 /// Example:
 /// ```dart
-/// // Notification dot
-/// NovaBadge.dot(color: NovaBadgeColor.danger)
-///
-/// // Count badge
-/// NovaBadge.count(count: 5)
-///
 /// // Status label
 /// NovaBadge(label: 'Active', color: NovaBadgeColor.success)
 ///
+/// // Notification dot
+/// NovaBadge(isDot: true, color: NovaBadgeColor.danger)
+///
+/// // Count badge
+/// NovaBadge(count: 5)
+///
 /// // On top of another widget
-/// NovaBadge.overlay(
+/// NovaBadge(
 ///   count: 3,
 ///   child: Icon(Icons.notifications),
 /// )
@@ -55,54 +55,30 @@ enum NovaBadgeColor {
 class NovaBadge extends StatelessWidget {
   const NovaBadge({
     super.key,
-    required this.label,
+    this.label,
+    this.count,
+    this.child,
+    this.isDot = false,
     this.variant = NovaBadgeVariant.filled,
     this.color = NovaBadgeColor.primary,
     this.icon,
     this.fontSize = 12,
-  });
+  }) : assert(
+  label != null || count != null || isDot,
+  'Provide at least one of: label, count, or isDot: true',
+  );
 
-  /// Simple dot badge — no label, just a colored circle.
-  const NovaBadge.dot({
-    super.key,
-    this.color = NovaBadgeColor.danger,
-  })  : label = '',
-        variant = NovaBadgeVariant.filled,
-        icon = null,
-        fontSize = 12,
-        _isDot = true,
-        _count = null,
-        _child = null;
+  /// Text label shown inside the badge.
+  final String? label;
 
-  /// Count badge — shows a number, max 99+.
-  const NovaBadge.count({
-    super.key,
-    required int count,
-    this.color = NovaBadgeColor.danger,
-  })  : label = '',
-        variant = NovaBadgeVariant.filled,
-        icon = null,
-        fontSize = 11,
-        _isDot = false,
-        _count = count,
-        _child = null;
+  /// Number shown inside the badge. Values above 99 show as "99+".
+  final int? count;
 
-  /// Overlay badge — positions a count/dot on top-right of [child].
-  const NovaBadge.overlay({
-    super.key,
-    required Widget child,
-    int? count,
-    this.color = NovaBadgeColor.danger,
-  })  : label = '',
-        variant = NovaBadgeVariant.filled,
-        icon = null,
-        fontSize = 11,
-        _isDot = count == null,
-        _count = count,
-        _child = child;
+  /// When true, renders a small colored dot with no text.
+  final bool isDot;
 
-  /// Badge label text.
-  final String label;
+  /// When provided, badge is positioned on top-right of this widget.
+  final Widget? child;
 
   /// Visual style — filled, outlined, soft.
   final NovaBadgeVariant variant;
@@ -115,10 +91,6 @@ class NovaBadge extends StatelessWidget {
 
   /// Font size for label/count text.
   final double fontSize;
-
-  final bool _isDot = false;
-  final int? _count;
-  final Widget? _child;
 
   // ── Color resolution ──────────────────────────────────────────────
 
@@ -145,7 +117,7 @@ class NovaBadge extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
 
     // Dot badge
-    if (_isDot) {
+    if (isDot) {
       return Container(
         width: compact ? 8 : 10,
         height: compact ? 8 : 10,
@@ -183,10 +155,9 @@ class NovaBadge extends StatelessWidget {
         break;
     }
 
-    // Count badge — circular
-    final displayCount = _count;
-    if (displayCount != null) {
-      final text = displayCount > 99 ? '99+' : '$displayCount';
+    // Count badge
+    if (count != null) {
+      final text = count! > 99 ? '99+' : '$count';
       return Container(
         constraints: const BoxConstraints(minWidth: 20, minHeight: 20),
         padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -228,7 +199,7 @@ class NovaBadge extends StatelessWidget {
             const SizedBox(width: 4),
           ],
           Text(
-            label,
+            label ?? '',
             style: TextStyle(
               color: textColor,
               fontSize: fontSize,
@@ -244,11 +215,11 @@ class NovaBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Overlay mode — badge on top-right of child
-    if (_child != null) {
+    if (child != null) {
       return Stack(
         clipBehavior: Clip.none,
         children: [
-          _child!,
+          child!,
           Positioned(
             top: -4,
             right: -4,

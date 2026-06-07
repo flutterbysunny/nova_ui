@@ -122,7 +122,7 @@ class _NovaTextFieldState extends State<NovaTextField> {
       style: TextStyle(
         color: widget.enabled
             ? colorScheme.onSurface
-            : colorScheme.onSurface.withOpacity(0.4),
+            : colorScheme.onSurface.withValues(alpha: 0.4),
       ),
       decoration: InputDecoration(
         labelText: widget.label,
@@ -160,14 +160,14 @@ class _NovaTextFieldState extends State<NovaTextField> {
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
-            color: colorScheme.outline.withOpacity(0.3),
+            color: colorScheme.outline.withValues(alpha:0.3),
           ),
         ),
 
         filled: true,
         fillColor: widget.enabled
-            ? colorScheme.surfaceContainerHighest.withOpacity(0.3)
-            : colorScheme.onSurface.withOpacity(0.05),
+            ? colorScheme.surfaceContainerHighest.withValues(alpha:0.3)
+            : colorScheme.onSurface.withValues(alpha:0.05),
 
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,

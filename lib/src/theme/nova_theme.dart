@@ -42,7 +42,7 @@ abstract final class NovaTheme {
       // Input decoration — matches NovaTextField style
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: scheme.surfaceContainerHighest.withOpacity(0.3),
+        fillColor: scheme.surfaceContainerHighest.withValues(alpha:0.3),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 14,
