@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.4
+
+### New Widgets
+- `NovaToast` — animated overlay notifications with info/success/warning/error types, top/bottom position, auto-dismiss
+- `NovaBottomSheet` — styled modal bottom sheet with drag handle, title, subtitle, and actions list support
+
 ## 1.0.3
 
 ### New Widgets

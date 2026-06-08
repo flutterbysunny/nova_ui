@@ -725,6 +725,176 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
+                  NovaSpacing.gapMd,
+
+// ── NovaToast ─────────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaToast',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+                        Row(
+                          children: [
+                            Expanded(
+                              child: NovaButton(
+                                text: 'Info',
+                                height: 40,
+                                onPressed: () => NovaToast.show(
+                                  context: context,
+                                  message: 'This is an info message.',
+                                ),
+                              ),
+                            ),
+                            NovaSpacing.gapSmH,
+                            Expanded(
+                              child: NovaButton(
+                                text: 'Success',
+                                height: 40,
+                                backgroundColor: const Color(0xFF22C55E),
+                                onPressed: () => NovaToast.show(
+                                  context: context,
+                                  message: 'Profile saved successfully!',
+                                  type: NovaToastType.success,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        NovaSpacing.gapSm,
+                        Row(
+                          children: [
+                            Expanded(
+                              child: NovaButton(
+                                text: 'Warning',
+                                height: 40,
+                                backgroundColor: const Color(0xFFF59E0B),
+                                onPressed: () => NovaToast.show(
+                                  context: context,
+                                  message: 'Check your connection.',
+                                  type: NovaToastType.warning,
+                                  position: NovaToastPosition.top,
+                                ),
+                              ),
+                            ),
+                            NovaSpacing.gapSmH,
+                            Expanded(
+                              child: NovaButton(
+                                text: 'Error',
+                                height: 40,
+                                backgroundColor: Theme.of(context).colorScheme.error,
+                                onPressed: () => NovaToast.show(
+                                  context: context,
+                                  message: 'Something went wrong.',
+                                  type: NovaToastType.error,
+                                  position: NovaToastPosition.top,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaBottomSheet ───────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaBottomSheet',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+                        Row(
+                          children: [
+                            // Custom content
+                            Expanded(
+                              child: NovaButton(
+                                text: 'Custom',
+                                height: 40,
+                                variant: NovaButtonVariant.outlined,
+                                onPressed: () => NovaBottomSheet.show(
+                                  context: context,
+                                  title: 'Edit Profile',
+                                  subtitle: 'Update your information',
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      NovaTextField(
+                                        label: 'Name',
+                                        hintText: 'John Doe',
+                                      ),
+                                      NovaSpacing.gapMd,
+                                      NovaTextField(
+                                        label: 'Bio',
+                                        hintText: 'Tell us about yourself...',
+                                        maxLines: 3,
+                                      ),
+                                      NovaSpacing.gapMd,
+                                      NovaButton(
+                                        text: 'Save Changes',
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            NovaSpacing.gapSmH,
+                            // Actions sheet
+                            Expanded(
+                              child: NovaButton(
+                                text: 'Actions',
+                                height: 40,
+                                onPressed: () => NovaBottomSheet.showActions(
+                                  context: context,
+                                  title: 'Sort By',
+                                  subtitle: 'Choose a sort order',
+                                  actions: [
+                                    NovaSheetAction(
+                                      label: 'Newest First',
+                                      icon: Icons.schedule_rounded,
+                                      onTap: () {},
+                                    ),
+                                    NovaSheetAction(
+                                      label: 'Oldest First',
+                                      icon: Icons.history_rounded,
+                                      onTap: () {},
+                                    ),
+                                    NovaSheetAction(
+                                      label: 'Most Popular',
+                                      icon: Icons.trending_up_rounded,
+                                      onTap: () {},
+                                    ),
+                                    NovaSheetAction(
+                                      label: 'Delete All',
+                                      icon: Icons.delete_outline_rounded,
+                                      isDestructive: true,
+                                      onTap: () {},
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                   NovaSpacing.gapXl,
 
                 ],
