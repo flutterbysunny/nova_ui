@@ -62,6 +62,8 @@ enum NovaChipColor {
 /// )
 /// ```
 class NovaChip extends StatelessWidget {
+  /// Creates a [NovaChip] widget.
+
   const NovaChip({
     super.key,
     required this.label,
@@ -127,7 +129,6 @@ class NovaChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final base = _resolveBase(context);
-    final scheme = Theme.of(context).colorScheme;
     final isDisabled = !enabled;
 
     // Selected state overrides variant — always filled

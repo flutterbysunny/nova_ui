@@ -47,6 +47,8 @@ enum NovaAvatarSize {
 /// )
 /// ```
 class NovaAvatar extends StatelessWidget {
+  /// Creates a [NovaAvatar] widget.
+
   const NovaAvatar({
     super.key,
     this.imageUrl,
