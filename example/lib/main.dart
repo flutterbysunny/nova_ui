@@ -33,6 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _loading = false;
+  int _selectedChip = 0;
+  List<int> _selectedChips = [0];
 
   Future<void> _onLogin() async {
     if (!_formKey.currentState!.validate()) return;
@@ -551,8 +553,180 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
+                  NovaSpacing.gapMd,
 
+// ── NovaShimmer ───────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaShimmer',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // List skeleton
+                        NovaShimmer.list(itemCount: 3),
+
+                        NovaSpacing.gapMd,
+
+                        // Card skeleton
+                        NovaShimmer.card(),
+                      ],
+                    ),
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaAvatar ────────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaAvatar',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // Sizes
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            NovaAvatar(name: 'A', size: NovaAvatarSize.xs),
+                            NovaAvatar(name: 'AB', size: NovaAvatarSize.sm),
+                            NovaAvatar(name: 'John Doe', size: NovaAvatarSize.md),
+                            NovaAvatar(name: 'Nova UI', size: NovaAvatarSize.lg),
+                            NovaAvatar(name: 'Flutter', size: NovaAvatarSize.xl),
+                          ],
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Online indicators
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            NovaAvatar(
+                              name: 'John Doe',
+                              showOnlineIndicator: true,
+                              isOnline: true,
+                            ),
+                            NovaAvatar(
+                              name: 'Jane Smith',
+                              showOnlineIndicator: true,
+                              isOnline: false,
+                            ),
+                            NovaAvatar(
+                              icon: Icons.person_rounded,
+                              showOnlineIndicator: true,
+                            ),
+                            NovaAvatar(
+                              name: 'Nova',
+                              borderColor: NovaColors.indigo[400],
+                              borderWidth: 2,
+                              showOnlineIndicator: true,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaChip ──────────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaChip',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // Variants
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            NovaChip(label: 'Filled', variant: NovaChipVariant.filled),
+                            NovaChip(label: 'Soft', variant: NovaChipVariant.soft),
+                            NovaChip(label: 'Outlined', variant: NovaChipVariant.outlined),
+                          ],
+                        ),
+
+                        NovaSpacing.gapSm,
+
+                        // Colors
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            NovaChip(label: 'Primary', color: NovaChipColor.primary),
+                            NovaChip(label: 'Success', color: NovaChipColor.success),
+                            NovaChip(label: 'Warning', color: NovaChipColor.warning),
+                            NovaChip(label: 'Danger', color: NovaChipColor.danger),
+                            NovaChip(label: 'Neutral', color: NovaChipColor.neutral),
+                          ],
+                        ),
+
+                        NovaSpacing.gapSm,
+
+                        // With icons + deletable
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            NovaChip(
+                              label: 'Flutter',
+                              icon: Icons.flutter_dash,
+                              color: NovaChipColor.primary,
+                            ),
+                            NovaChip(
+                              label: 'Remove me',
+                              onDeleted: () {},
+                              color: NovaChipColor.danger,
+                              variant: NovaChipVariant.outlined,
+                            ),
+                          ],
+                        ),
+
+                        NovaSpacing.gapSm,
+
+                        // Single select group
+                        NovaChipGroup(
+                          chips: const ['All', 'Design', 'Code', 'Testing'],
+                          selectedIndex: _selectedChip,
+                          onChanged: (i) => setState(() => _selectedChip = i),
+                        ),
+
+                        NovaSpacing.gapSm,
+
+                        // Multi select group
+                        NovaChipGroup.multi(
+                          chips: const ['Flutter', 'Dart', 'Firebase'],
+                          selectedIndexes: _selectedChips,
+                          onMultiChanged: (indexes) =>
+                              setState(() => _selectedChips = indexes),
+                        ),
+                      ],
+                    ),
+                  ),
                   NovaSpacing.gapXl,
+
                 ],
               ),
             ),

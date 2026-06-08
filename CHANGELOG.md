@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.3
+
+### New Widgets
+- `NovaShimmer` — animated skeleton loading placeholder with circle, rectangle, card, and list presets
+- `NovaAvatar` — network/asset/initials/icon avatar with online indicator, border, and size variants
+- `NovaChip` — filter/tag chips with filled/outlined/soft variants, icon, delete, and selected state
+- `NovaChipGroup` — single and multi select chip group
+
 ## 1.0.2
 
 ### New Widgets

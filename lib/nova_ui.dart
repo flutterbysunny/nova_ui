@@ -9,6 +9,9 @@ export 'src/widgets/dialogs/nova_dialog.dart';
 export 'src/widgets/badge/nova_badge.dart';
 export 'src/widgets/toasts/nova_toast.dart';
 export 'src/widgets/bottomsheets/nova_bottom_sheet.dart';
+export 'src/widgets/shimmer/nova_shimmer.dart';
+export 'src/widgets/avatar/nova_avatar.dart';
+export 'src/widgets/chips/nova_chip.dart';
 
 export 'src/theme/nova_theme.dart';
 
