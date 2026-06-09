@@ -35,6 +35,24 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _loading = false;
   int _selectedChip = 0;
   List<int> _selectedChips = [0];
+  String? _selectedCountry;
+  String? _selectedFramework;
+  bool _termsAccepted = false;
+  bool _newsletter = false;
+  bool? _indeterminate = null;
+  List<String> _checkboxGroup = ['Flutter'];
+
+  bool _switchNotifications = true;
+  bool _switchDarkMode = false;
+  bool _switchMarketing = false;
+  bool _switchSmall = true;
+  bool _switchLarge = false;
+
+  bool _roundedChecked = true;
+  bool _circleChecked = true;
+  bool _squareChecked = true;
+
+
 
   Future<void> _onLogin() async {
     if (!_formKey.currentState!.validate()) return;
@@ -891,6 +909,285 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaDropdown ──────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaDropdown',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // Country dropdown
+                        NovaDropdown<String>(
+                          label: 'Country',
+                          hintText: 'Select a country',
+                          prefixIcon: const Icon(Icons.language_rounded),
+                          value: _selectedCountry,
+                          items: const [
+                            NovaDropdownItem(value: 'in', label: 'India'),
+                            NovaDropdownItem(
+                                value: 'us', label: 'United States'),
+                            NovaDropdownItem(
+                                value: 'uk', label: 'United Kingdom'),
+                            NovaDropdownItem(value: 'ca', label: 'Canada'),
+                          ],
+                          onChanged: (v) =>
+                              setState(() => _selectedCountry = v),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Framework dropdown with icons
+                        NovaDropdown<String>(
+                          label: 'Framework',
+                          hintText: 'Select a framework',
+                          prefixIcon: const Icon(Icons.code_rounded),
+                          value: _selectedFramework,
+                          items: const [
+                            NovaDropdownItem(
+                              value: 'flutter',
+                              label: 'Flutter',
+                              icon: Icons.flutter_dash,
+                            ),
+                            NovaDropdownItem(
+                              value: 'react',
+                              label: 'React Native',
+                              icon: Icons.phone_android_rounded,
+                            ),
+                            NovaDropdownItem(
+                              value: 'kotlin',
+                              label: 'Kotlin',
+                              icon: Icons.android_rounded,
+                            ),
+                          ],
+                          onChanged: (v) =>
+                              setState(() => _selectedFramework = v),
+                          validator: (v) =>
+                          v == null
+                              ? 'Please select a framework'
+                              : null,
+                        ),
+                      ],
+                    ),
+                  ),
+                  // ── NovaCheckbox ──────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaCheckbox',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // Simple
+                        NovaCheckbox(
+                          value: _termsAccepted,
+                          label: 'Accept terms and conditions',
+                          onChanged: (v) => setState(() => _termsAccepted = v!),
+                        ),
+
+                        NovaSpacing.gapSm,
+
+                        // With sublabel
+                        NovaCheckbox(
+                          value: _newsletter,
+                          label: 'Marketing emails',
+                          sublabel: 'Receive updates about new features',
+                          onChanged: (v) => setState(() => _newsletter = v!),
+                        ),
+
+                        NovaSpacing.gapSm,
+
+                        // ✅ Row hataya — seedha Column mein
+                        // ✅ State se connect karo
+                        NovaCheckbox(
+                          value: _roundedChecked,
+                          shape: NovaCheckboxShape.rounded,
+                          label: 'Rounded',
+                          onChanged: (v) => setState(() => _roundedChecked = v!),
+                        ),
+
+                        NovaSpacing.gapSm,
+
+                        NovaCheckbox(
+                          value: _circleChecked,
+                          shape: NovaCheckboxShape.circle,
+                          label: 'Circle',
+                          onChanged: (v) => setState(() => _circleChecked = v!),
+                        ),
+
+                        NovaSpacing.gapSm,
+
+                        NovaCheckbox(
+                          value: _squareChecked,
+                          shape: NovaCheckboxShape.square,
+                          label: 'Square',
+                          onChanged: (v) => setState(() => _squareChecked = v!),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Group
+                        NovaCheckboxGroup(
+                          items: const [
+                            'Flutter',
+                            'Dart',
+                            'Firebase',
+                            'Supabase'
+                          ],
+                          selectedItems: _checkboxGroup,
+                          onChanged: (items) =>
+                              setState(() => _checkboxGroup = items),
+                        ),
+                      ],
+                    ),
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaSwitch ────────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaSwitch',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // With label
+                        NovaSwitch(
+                          value: _switchNotifications,
+                          label: 'Push Notifications',
+                          onChanged: (v) =>
+                              setState(() => _switchNotifications = v),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // With sublabel
+                        NovaSwitch(
+                          value: _switchDarkMode,
+                          label: 'Dark Mode',
+                          sublabel: 'Switch between light and dark theme',
+                          onChanged: (v) => setState(() => _switchDarkMode = v),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Label left — settings style
+                        NovaSwitch(
+                          value: _switchMarketing,
+                          label: 'Marketing Emails',
+                          sublabel: 'Receive updates and offers',
+                          labelPosition: NovaSwitchLabelPosition.left,
+                          onChanged: (v) =>
+                              setState(() => _switchMarketing = v),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Sizes
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                              children: [
+                                NovaSwitch(
+                                  value: _switchSmall,
+                                  size: NovaSwitchSize.sm,
+                                  onChanged: (v) =>
+                                      setState(() => _switchSmall = v),
+                                ),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  'sm',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                NovaSwitch(
+                                  value: _switchNotifications,
+                                  size: NovaSwitchSize.md,
+                                  onChanged: (v) =>
+                                      setState(() => _switchNotifications = v),
+                                ),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  'md',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                NovaSwitch(
+                                  value: _switchLarge,
+                                  size: NovaSwitchSize.lg,
+                                  onChanged: (v) =>
+                                      setState(() => _switchLarge = v),
+                                ),
+                                NovaSpacing.gapSm,
+                                Text(
+                                  'lg',
+                                  style: TextStyle(
+                                    color: context.novaTextSecondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Disabled
+                        NovaSwitch(
+                          value: true,
+                          label: 'Disabled On',
+                          enabled: false,
+                          onChanged: (_) {},
+                        ),
+
+                        NovaSpacing.gapSm,
+
+                        NovaSwitch(
+                          value: false,
+                          label: 'Disabled Off',
+                          enabled: false,
+                          onChanged: (_) {},
                         ),
                       ],
                     ),

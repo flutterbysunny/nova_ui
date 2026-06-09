@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.5
+
+### New Widgets
+- `NovaDropdown` — styled dropdown with label, validation, icons, and disabled state
+- `NovaCheckbox` — rounded/circle/square shapes, sublabel, tristate, group support
+- `NovaSwitch` — animated toggle with label, sublabel, sizes (sm/md/lg), label position
+
 ## 1.0.4
 
 ### New Widgets
