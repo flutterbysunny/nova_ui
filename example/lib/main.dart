@@ -51,7 +51,13 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _circleChecked = true;
   bool _squareChecked = true;
 
+  final _searchController = TextEditingController();
+  bool _searchLoading = false;
+  int _currentStep = 1;
 
+  int _tabIndex = 0;
+  int _tabIndex2 = 0;
+  int _tabIndex3 = 0;
 
   Future<void> _onLogin() async {
     if (!_formKey.currentState!.validate()) return;
@@ -64,6 +70,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _searchController.dispose();
+
     super.dispose();
   }
 
@@ -1187,6 +1195,234 @@ class _LoginScreenState extends State<LoginScreen> {
                           label: 'Disabled Off',
                           enabled: false,
                           onChanged: (_) {},
+                        ),
+                      ],
+                    ),
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaSearchBar ─────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaSearchBar',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // Simple
+                        NovaSearchBar(
+                          hintText: 'Search anything...',
+                          onChanged: (q) => debugPrint('Query: $q'),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // With debounce
+                        NovaSearchBar(
+                          controller: _searchController,
+                          hintText: 'Search with debounce...',
+                          debounce: const Duration(milliseconds: 500),
+                          onChanged: (q) => debugPrint('Debounced: $q'),
+                          onSubmitted: (q) => debugPrint('Submitted: $q'),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Loading state
+                        // Loading state — ab properly kaam karega
+                        NovaSearchBar(
+                          hintText: _searchLoading ? 'Searching...' : 'Search with loading...',
+                          isLoading: _searchLoading,
+                          onChanged: (q) async {
+                            if (q.isEmpty) return;
+                            setState(() => _searchLoading = true);
+                            await Future.delayed(const Duration(seconds: 2)); // simulate API
+                            if (mounted) setState(() => _searchLoading = false);
+                          },
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Disabled
+                        NovaSearchBar(
+                          hintText: 'Disabled search',
+                          enabled: false,
+                          onChanged: (_) {},
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Pill shape
+                        NovaSearchBar(
+                          hintText: 'Pill shape search...',
+                          borderRadius: BorderRadius.circular(999),
+                          onChanged: (q) => debugPrint('Pill: $q'),
+                        ),
+                      ],
+                    ),
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaStepIndicator ─────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaStepIndicator',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // Numbered
+                        NovaStepIndicator(
+                          totalSteps: 4,
+                          currentStep: _currentStep,
+                          labels: const ['Account', 'Profile', 'Review', 'Done'],
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Dots
+                        Center(
+                          child: NovaStepIndicator(
+                            totalSteps: 5,
+                            currentStep: _currentStep,
+                            style: NovaStepIndicatorStyle.dots,
+                            size: 28,
+                          ),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Progress bar
+                        NovaStepIndicator(
+                          totalSteps: 4,
+                          currentStep: _currentStep,
+                          style: NovaStepIndicatorStyle.progress,
+                          labels: const ['Account', 'Profile', 'Review', 'Done'],
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Controls
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            NovaButton(
+                              text: 'Prev',
+                              width: 100,
+                              height: 40,
+                              variant: NovaButtonVariant.outlined,
+                              onPressed: _currentStep > 0
+                                  ? () => setState(() => _currentStep--)
+                                  : null,
+                            ),
+                            NovaSpacing.gapMdH,
+                            NovaButton(
+                              text: 'Next',
+                              width: 100,
+                              height: 40,
+                              onPressed: _currentStep < 3
+                                  ? () => setState(() => _currentStep++)
+                                  : null,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaTabBar ────────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaTabBar',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        // Pill style
+                        Text(
+                          'Pill',
+                          style: TextStyle(
+                            color: context.novaTextSecondary,
+                            fontSize: 11,
+                          ),
+                        ),
+                        NovaSpacing.gapSm,
+                        NovaTabBar(
+                          selectedIndex: _tabIndex,
+                          activeTextColor: Colors.white,
+                          tabs: const [
+                            NovaTabItem(label: 'All'),
+                            NovaTabItem(label: 'Active'),
+                            NovaTabItem(label: 'Done'),
+                          ],
+                          onChanged: (i) => setState(() => _tabIndex = i),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Underline style
+                        Text(
+                          'Underline',
+                          style: TextStyle(
+                            color: context.novaTextSecondary,
+                            fontSize: 11,
+                          ),
+                        ),
+                        NovaSpacing.gapSm,
+                        NovaTabBar(
+                          selectedIndex: _tabIndex2,
+                          style: NovaTabBarStyle.underline,
+                          tabs: const [
+                            NovaTabItem(label: 'Feed', icon: Icons.home_rounded),
+                            NovaTabItem(label: 'Search', icon: Icons.search_rounded),
+                            NovaTabItem(label: 'Inbox', icon: Icons.mail_rounded, badge: 3),
+                            NovaTabItem(label: 'Profile', icon: Icons.person_rounded),
+                          ],
+                          onChanged: (i) => setState(() => _tabIndex2 = i),
+                        ),
+
+                        NovaSpacing.gapMd,
+
+                        // Filled style
+                        Text(
+                          'Filled',
+                          style: TextStyle(
+                            color: context.novaTextSecondary,
+                            fontSize: 11,
+                          ),
+                        ),
+                        NovaSpacing.gapSm,
+                        NovaTabBar(
+                          selectedIndex: _tabIndex3,
+                          style: NovaTabBarStyle.filled,
+                          tabs: const [
+                            NovaTabItem(label: 'Day'),
+                            NovaTabItem(label: 'Week'),
+                            NovaTabItem(label: 'Month'),
+                          ],
+                          onChanged: (i) => setState(() => _tabIndex3 = i),
                         ),
                       ],
                     ),

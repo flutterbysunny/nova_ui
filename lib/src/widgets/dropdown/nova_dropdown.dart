@@ -116,7 +116,7 @@ class NovaDropdown<T> extends StatelessWidget {
     );
 
     return DropdownButtonFormField<T>(
-      value: value,
+      initialValue: value,
       onChanged: enabled ? onChanged : null,
       validator: validator,
       borderRadius: radius,

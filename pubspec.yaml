@@ -1,6 +1,6 @@
 name: nova_ui
 description: A modern Flutter UI framework with reusable widgets, design system components, and beautiful developer-friendly APIs.
-version: 1.0.5
+version: 1.0.6
 homepage: https://github.com/flutterbysunny/nova_ui
 repository: https://github.com/flutterbysunny/nova_ui
 issue_tracker: https://github.com/flutterbysunny/nova_ui/issues

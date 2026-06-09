@@ -15,6 +15,9 @@ export 'src/widgets/chips/nova_chip.dart';
 export 'src/widgets/dropdown/nova_dropdown.dart';
 export 'src/widgets/checkbox/nova_checkbox.dart';
 export 'src/widgets/switch/nova_switch.dart';
+export 'src/widgets/search/nova_search_bar.dart';
+export 'src/widgets/step_indicator/nova_step_indicator.dart';
+export 'src/widgets/tab_bar/nova_tab_bar.dart';
 
 export 'src/theme/nova_theme.dart';
 

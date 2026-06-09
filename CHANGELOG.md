@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.6
+
+### New Widgets
+- `NovaSearchBar` — search input with clear button, loading state, debounce, pill shape support
+- `NovaStepIndicator` — numbered/dots/progress styles for onboarding and checkout flows
+- `NovaTabBar` — pill/underline/filled tab bar with icons, badges, and scrollable support
+
 ## 1.0.5
 
 ### New Widgets
