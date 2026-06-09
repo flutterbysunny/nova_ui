@@ -39,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _selectedFramework;
   bool _termsAccepted = false;
   bool _newsletter = false;
-  bool? _indeterminate = null;
   List<String> _checkboxGroup = ['Flutter'];
 
   bool _switchNotifications = true;
