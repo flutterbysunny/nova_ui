@@ -230,7 +230,7 @@ class _NovaShimmerList extends StatelessWidget {
           return const Padding(
             padding:  EdgeInsets.only(bottom: 16),
             child: Row(
-              children: const [
+              children: [
                 // Avatar circle
                 NovaShimmer.circle(size: 44),
                 SizedBox(width: 12),

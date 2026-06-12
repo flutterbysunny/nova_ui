@@ -277,7 +277,7 @@ class NovaChipGroup extends StatelessWidget {
   const NovaChipGroup.multi({
     super.key,
     required this.chips,
-    required List<int> this.selectedIndexes,
+    required this.selectedIndexes,
     required void Function(List<int>) this.onMultiChanged,
     this.color = NovaChipColor.primary,
     this.spacing = 8,

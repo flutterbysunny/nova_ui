@@ -126,7 +126,7 @@ class _NovaTabBarState extends State<NovaTabBar>
     with SingleTickerProviderStateMixin {
   late int _selectedIndex;
   late AnimationController _controller;
-  late Animation<double> _animation;
+  late Animation<double> animation;
 
   @override
   void initState() {
@@ -136,7 +136,7 @@ class _NovaTabBarState extends State<NovaTabBar>
       vsync: this,
       duration: const Duration(milliseconds: 200),
     );
-    _animation = CurvedAnimation(
+    animation = CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
     );
