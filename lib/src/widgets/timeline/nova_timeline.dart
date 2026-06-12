@@ -158,9 +158,9 @@ class NovaTimeline extends StatelessWidget {
         final color = _stateColor(item.state, scheme);
 
         // Line color — based on next item's state (or current if last)
-        final lineColor = !isLast
-            ? _stateColor(items[index + 1].state, scheme)
-            : color;
+        // final lineColor = !isLast
+        //     ? _stateColor(items[index + 1].state, scheme)
+        //     : color;
         final showLine = !isLast;
         final lineActive = item.state == NovaTimelineState.completed;
 
