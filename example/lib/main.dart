@@ -81,6 +81,34 @@ class _LoginScreenState extends State<LoginScreen> {
     final isLight = !context.isDark;
 
     return Scaffold(
+      appBar: NovaAppBar(
+        backgroundColor: Colors.white,
+        title: 'Hello, Sunny 👋',
+        subtitle: 'Welcome back',
+        leading: NovaAppBarItem(
+          width: 45,
+          height: 45,
+          isCircle: true,
+          type: NovaAppBarImageType.network,
+          source: 'https://avatars.githubusercontent.com/u/283915454?v=4',
+          onTap: () => debugPrint('Profile tapped'),
+          tooltip: 'Profile',
+        ),
+        actions: [
+          NovaAppBarItem(
+            type: NovaAppBarImageType.icon,
+            icon: Icons.search_rounded,
+            onTap: () => debugPrint('Search tapped'),
+          ),
+          NovaAppBarItem(
+            type: NovaAppBarImageType.icon,
+            icon: Icons.notifications_outlined,
+            badge: 5,
+            onTap: () => debugPrint('Notifications tapped'),
+            tooltip: 'Notifications',
+          ),
+        ],
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -1423,6 +1451,228 @@ class _LoginScreenState extends State<LoginScreen> {
                             NovaTabItem(label: 'Month'),
                           ],
                           onChanged: (i) => setState(() => _tabIndex3 = i),
+                        ),
+                      ],
+                    ),
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaListTile ──────────────────────────────────
+                  Text(
+                    'NovaListTile / NovaListGroup',
+                    style: TextStyle(
+                      color: context.novaTextSecondary,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1,
+                    ),
+                  ),
+
+                  NovaSpacing.gapMd,
+
+                  NovaListGroup(
+                    title: 'Account',
+                    children: [
+                      NovaListTile(
+                        title: 'Sunny Patel',
+                        subtitle: 'sunny@example.com',
+                        leading: NovaAvatar(
+                          imageUrl: 'https://avatars.githubusercontent.com/u/283915454?v=4',
+                          name: 'Sunny Patel',
+                          size: NovaAvatarSize.sm,
+                        ),
+                        showChevron: true,
+                        showDivider: true,
+                        onTap: () {},
+                      ),
+                      NovaListTile(
+                        title: 'Notifications',
+                        subtitle: 'Push notifications enabled',
+                        leadingIcon: Icons.notifications_outlined,
+                        trailing: NovaSwitch(
+                          value: _switchNotifications,
+                          onChanged: (v) => setState(() => _switchNotifications = v),
+                        ),
+                        showDivider: true,
+                      ),
+                      NovaListTile(
+                        title: 'Dark Mode',
+                        leadingIcon: Icons.dark_mode_outlined,
+                        trailing: NovaSwitch(
+                          value: _switchDarkMode,
+                          onChanged: (v) => setState(() => _switchDarkMode = v),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  NovaSpacing.gapMd,
+
+                  NovaListGroup(
+                    title: 'Support',
+                    children: [
+                      NovaListTile(
+                        title: 'Help Center',
+                        leadingIcon: Icons.help_outline_rounded,
+                        showChevron: true,
+                        showDivider: true,
+                        onTap: () {},
+                      ),
+                      NovaListTile(
+                        title: 'Contact Us',
+                        leadingIcon: Icons.mail_outline_rounded,
+                        showChevron: true,
+                        showDivider: true,
+                        onTap: () {},
+                      ),
+                      NovaListTile(
+                        title: 'About',
+                        subtitle: 'Version 1.0.8',
+                        leadingIcon: Icons.info_outline_rounded,
+                        showChevron: true,
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaStatCard ──────────────────────────────────
+                  Text(
+                    'NovaStatCard / NovaStatGrid',
+                    style: TextStyle(
+                      color: context.novaTextSecondary,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1,
+                    ),
+                  ),
+
+                  NovaSpacing.gapMd,
+
+                  NovaStatGrid(
+                    cards: [
+                      NovaStatCard(
+                        label: 'Total Revenue',
+                        value: '\$24.5K',
+                        icon: Icons.attach_money_rounded,
+                        trend: NovaStatTrend.up,
+                        trendValue: '+12.5%',
+                        subtitle: 'vs last month',
+                      ),
+                      NovaStatCard(
+                        label: 'Active Users',
+                        value: '1,204',
+                        icon: Icons.people_outline_rounded,
+                        iconColor: const Color(0xFF22C55E),
+                        trend: NovaStatTrend.up,
+                        trendValue: '+8.2%',
+                        subtitle: 'vs last week',
+                      ),
+                      NovaStatCard(
+                        label: 'Bounce Rate',
+                        value: '34.2%',
+                        icon: Icons.trending_down_rounded,
+                        iconColor: const Color(0xFFF59E0B),
+                        trend: NovaStatTrend.down,
+                        trendValue: '-2.1%',
+                        subtitle: 'vs last month',
+                      ),
+                      NovaStatCard(
+                        label: 'Avg Session',
+                        value: '4m 32s',
+                        icon: Icons.schedule_rounded,
+                        iconColor: const Color(0xFF8B5CF6),
+                        trend: NovaStatTrend.neutral,
+                        trendValue: '0.0%',
+                        subtitle: 'no change',
+                      ),
+                    ],
+                  ),
+                  NovaSpacing.gapMd,
+
+// ── NovaTimeline ──────────────────────────────────
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaTimeline',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        NovaTimeline(
+                          items: [
+                            NovaTimelineItem(
+                              title: 'Order Placed',
+                              subtitle: 'Jun 10, 2026 — 10:30 AM',
+                              state: NovaTimelineState.completed,
+                            ),
+                            NovaTimelineItem(
+                              title: 'Order Confirmed',
+                              subtitle: 'Jun 10, 2026 — 11:00 AM',
+                              state: NovaTimelineState.completed,
+                            ),
+                            NovaTimelineItem(
+                              title: 'Out for Delivery',
+                              subtitle: 'Jun 12, 2026 — 9:00 AM',
+                              state: NovaTimelineState.active,
+                              icon: Icons.local_shipping_rounded,
+                              trailing: NovaBadge(
+                                label: 'Live',
+                                color: NovaBadgeColor.success,
+                                variant: NovaBadgeVariant.soft,
+                              ),
+                            ),
+                            NovaTimelineItem(
+                              title: 'Delivered',
+                              subtitle: 'Estimated Jun 12, 2026',
+                              state: NovaTimelineState.pending,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  NovaSpacing.gapMd,
+
+// Error state example
+                  NovaCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'NovaTimeline — Error State',
+                          style: TextStyle(
+                            color: context.novaTextPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                        NovaSpacing.gapMd,
+
+                        NovaTimeline(
+                          items: [
+                            NovaTimelineItem(
+                              title: 'Payment Initiated',
+                              subtitle: 'Jun 12, 2026 — 3:00 PM',
+                              state: NovaTimelineState.completed,
+                            ),
+                            NovaTimelineItem(
+                              title: 'Payment Failed',
+                              subtitle: 'Insufficient funds',
+                              state: NovaTimelineState.error,
+                            ),
+                            NovaTimelineItem(
+                              title: 'Retry Payment',
+                              state: NovaTimelineState.pending,
+                            ),
+                          ],
                         ),
                       ],
                     ),

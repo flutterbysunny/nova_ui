@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.7
+
+### New Widgets
+- `NovaAppBar` — flexible app bar with avatar/icon leading/trailing items (network, asset, icon, or custom widget), badges, tooltips, subtitle, bottom slot support
+- `NovaListTile` / `NovaListGroup` — consistent list items with leading avatar/icon, trailing widgets, chevron, and grouped sections
+- `NovaStatCard` / `NovaStatGrid` — dashboard metric cards with trend indicators and responsive grid layout
+- `NovaTimeline` — vertical timeline for order tracking and activity feeds with completed/active/pending/error states
+
 ## 1.0.6
 
 ### New Widgets
